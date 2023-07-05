@@ -6,8 +6,7 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:pokedex/modules/infra/data/http/interfaces/ipokemon_data_http.dart'
-    as _i2;
+import 'package:pokedex/modules/infra/data/http/ipokemon_data_http.dart' as _i2;
 import 'package:pokedex/modules/infra/models/pokemon_model.dart' as _i4;
 
 // ignore_for_file: type=lint
