@@ -7,10 +7,10 @@ import 'package:pokedex/modules/domain/usescases/pokemon_search.dart';
 
 import 'package:mockito/annotations.dart';
 
-// Annotation which generates the cat.mocks.dart library and the MockCat class.
-@GenerateMocks([IPokemonRepository])
 import 'pokemon_search_test.mocks.dart';
 
+// Annotation which generates the cat.mocks.dart library and the MockCat class.
+@GenerateMocks([IPokemonRepository])
 void main() {
   MockIPokemonRepository iPokemonRepository = MockIPokemonRepository();
 

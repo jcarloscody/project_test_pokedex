@@ -25,7 +25,8 @@ class PokemonModel extends PokemonEntity {
     return PokemonModel(
       order: map['order'] as int,
       name: map['name'] as String,
-      imgUrl: map['imgUrl'] as String,
+      imgUrl: map["sprites"]["versions"]["generation-v"]["black-white"]
+          ["animated"]["front_shiny"] as String,
     );
   }
 
