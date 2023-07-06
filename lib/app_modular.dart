@@ -8,10 +8,10 @@ import 'package:pokedex/modules/presenter/home/home_module.dart';
 class AppModule extends Module {
   @override
   List<Bind<Object>> get binds => [
-        Bind.lazySingleton((i) => Dio()),
-        Bind.lazySingleton((i) => PokemonDataHttp(dio: i())),
-        Bind.lazySingleton((i) => PokemonRepository(iPokemonDataHttp: i())),
-        Bind.lazySingleton((i) => PokemonSearch(pokemonRepository: i())),
+        Bind((i) => Dio()),
+        Bind((i) => PokemonDataHttp(dio: i())),
+        Bind((i) => PokemonRepository(iPokemonDataHttp: i())),
+        Bind((i) => PokemonSearch(pokemonRepository: i())),
       ];
 
   @override

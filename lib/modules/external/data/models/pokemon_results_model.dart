@@ -14,7 +14,7 @@ class PokemonResultsModel {
     };
   }
 
-  factory PokemonResultsModel.fromMap(Map<String, dynamic> map) {
+  factory PokemonResultsModel.fromMap(map) {
     return PokemonResultsModel(
       name: map['name'] as String,
       url: map['url'] as String,
@@ -23,6 +23,6 @@ class PokemonResultsModel {
 
   String toJson() => json.encode(toMap());
 
-  factory PokemonResultsModel.fromJson(String source) =>
-      PokemonResultsModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory PokemonResultsModel.fromJson(dynamic source) =>
+      PokemonResultsModel.fromMap(source);
 }
