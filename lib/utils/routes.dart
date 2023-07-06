@@ -1,1 +1,2 @@
-const String homeRoute = "/";
+const String homeRoute = "/home";
+const String initial = "/";

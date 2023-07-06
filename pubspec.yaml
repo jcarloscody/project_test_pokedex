@@ -37,6 +37,7 @@ dependencies:
   dartz:
   dio:
   flutter_modular:
+  google_fonts: 
   
 dev_dependencies:
   flutter_test:
