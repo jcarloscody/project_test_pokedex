@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:dio/dio.dart';
 import 'package:pokedex/modules/external/data/models/pokemon_results_model.dart';
 
@@ -15,25 +16,25 @@ class PokemonDataHttp implements IPokemonDataHttp {
     init();
   }
 
-  Future<void> init() async {
-    data = (await dio.get(path).then((value) => value.data["results"]) as List)
-        .map((e) => PokemonResultsModel.fromJson(e))
-        .toList();
-  }
+  Future<void> init() async {}
 
   @override
   Future<List<PokemonModel>> getPokemons({required String text}) async {
-    // final listPokemon = data.map((e) => null);
-    if (data.isNotEmpty) {
-      List<PokemonModel> listPokemon = [];
-      data.forEach((element) async {
-        final pokemon = await dio.get(element.url).then((value) => value.data);
-        listPokemon.add(PokemonModel.fromMap(pokemon));
-      });
-      print("object");
-      return listPokemon;
+    data = (await dio.get(path).then((value) => value.data["results"]) as List)
+        .map((e) {
+      return PokemonResultsModel.fromJson(e);
+    }).toList();
+    List<PokemonModel> listPokemon = [];
+    for (var i = 0; i < 20; i++) {
+      final pokemon = await dio.get(data[i].url).then((value) => value.data);
+      listPokemon.add(PokemonModel.fromMap(pokemon));
     }
-    return [];
+    // for (var pokemon in data) {
+
+    // }
+    data.forEach((element) async {});
+    print("object");
+    return listPokemon;
 
     // return await dio.get(path).then((value) => value.data["results"]);
   }

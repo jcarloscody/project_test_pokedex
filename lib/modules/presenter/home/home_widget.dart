@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pokedex/modules/domain/entities/pokemon_entity.dart';
-import 'package:pokedex/modules/presenter/widgets/block_pokemon_widget.dart';
+import 'package:pokedex/modules/presenter/home/home_controller.dart';
 import 'package:pokedex/utils/style.dart';
+import 'package:provider/provider.dart';
 
-class HomeWidget extends StatelessWidget {
+import '../widgets/block_pokemon_widget.dart';
+
+class HomeWidget extends StatefulWidget {
   const HomeWidget({super.key});
 
   @override
+  State<HomeWidget> createState() => _HomeWidgetState();
+}
+
+class _HomeWidgetState extends State<HomeWidget> {
+  @override
   Widget build(BuildContext context) {
+    final a = Provider.of<HomeController>(context, listen: true);
+    var controller = Modular.get<HomeController>();
     final size = MediaQuery.of(context).size;
     final width = size.width;
     final height = size.height;
@@ -95,20 +106,27 @@ class HomeWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: const Color(0xffffffff)),
-                child: GridView.count(
-                  crossAxisCount: 3,
-                  padding: const EdgeInsets.fromLTRB(6, 20, 6, 10),
-                  mainAxisSpacing: 5,
-                  crossAxisSpacing: 5,
-                  children: List.generate(
-                    9,
-                    (index) => SizedBox(
-                      height: height * 0.56,
-                      child: BlockPokemonWidget(
-                        pokemonEntity: PokemonEntity(
-                            order: 1, name: "name", imgUrl: "imgUrl"),
-                      ),
+                child: Visibility(
+                  visible: controller.status,
+                  replacement: const CircularProgressIndicator(),
+                  child: GridView.builder(
+                    padding: const EdgeInsets.fromLTRB(6, 20, 6, 10),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      mainAxisSpacing: 2.0,
+                      crossAxisSpacing: 3.0,
                     ),
+                    itemCount: controller.listPokemons.length,
+                    itemBuilder: (context, index) {
+                      return BlockPokemonWidget(
+                        pokemonEntity: PokemonEntity(
+                          order: controller.listPokemons[index].order,
+                          name: controller.listPokemons[index].name,
+                          imgUrl: controller.listPokemons[index].imgUrl,
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
