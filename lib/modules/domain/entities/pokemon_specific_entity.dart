@@ -1,9 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-class PokemonEntity {
+class PokemonSpecificEntity {
   final int order;
   final String name;
   final String imgUrl;
-  PokemonEntity({
+  PokemonSpecificEntity({
     required this.order,
     required this.name,
     required this.imgUrl,

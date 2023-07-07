@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:pokedex/modules/domain/entities/pokemon_entity.dart';
+import 'package:pokedex/modules/domain/entities/pokemon_global_entity.dart';
 import 'package:pokedex/modules/domain/errors/error_search.dart';
 import 'package:pokedex/modules/domain/repositories/ipokemon_repository.dart';
 import 'package:pokedex/modules/domain/usescases/pokemon_search.dart';
@@ -23,15 +23,15 @@ void main() {
   test(
     'Testar o método search',
     () async {
-      when(iPokemonRepository.search(text: "a"))
-          .thenAnswer((_) async => <PokemonEntity>[]);
-      final listPokemonSearch = await pokemonSearch.search(text: "a");
-      expect(listPokemonSearch, isA<List<PokemonEntity>>());
+      when(iPokemonRepository.searchAll())
+          .thenAnswer((_) async => <PokemonGlobalEntity>[]);
+      final listPokemonSearch = await pokemonSearch.searchAll();
+      expect(listPokemonSearch, isA<List<PokemonGlobalEntity>>());
     },
   );
 
   test("Retornar um erro quando o texto inserido for inválido", () async {
-    final result = await pokemonSearch.search(text: "");
+    final result = await pokemonSearch.searchAll();
     expect(result, isA<ErrorSearchRepository>());
   });
 }

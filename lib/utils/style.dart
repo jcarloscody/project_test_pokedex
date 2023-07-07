@@ -18,3 +18,15 @@ final fontVector = GoogleFonts.poppins(
   fontSize: 10,
   color: const Color(0xffDC0A2D),
 );
+
+final fontOrderOfBlock = GoogleFonts.poppins(
+  fontWeight: FontWeight.w400,
+  fontSize: 8,
+  color: const Color.fromRGBO(102, 102, 102, 1),
+);
+
+final fontNameOfBlock = GoogleFonts.poppins(
+  fontWeight: FontWeight.w400,
+  fontSize: 10,
+  color: const Color.fromRGBO(29, 29, 29, 1),
+);

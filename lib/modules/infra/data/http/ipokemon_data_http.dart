@@ -1,5 +1,7 @@
-import 'package:pokedex/modules/infra/models/pokemon_model.dart';
+import 'package:pokedex/modules/domain/entities/pokemon_global_entity.dart';
+import 'package:pokedex/modules/domain/entities/pokemon_specific_entity.dart';
 
 abstract class IPokemonDataHttp {
-  Future<List<PokemonModel>> getPokemons({required String text});
+  Future<List<PokemonGlobalEntity>> getPokemons();
+  Future<PokemonSpecificEntity> getPokemon({required String text});
 }

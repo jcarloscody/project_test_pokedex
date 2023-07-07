@@ -30,7 +30,7 @@ void main() {
         statusCode: 200,
         requestOptions: RequestOptions()));
 
-    final listaPoke = pokemonDataHttp.getPokemons(text: "text");
+    final listaPoke = pokemonDataHttp.getPokemons();
     expect(listaPoke, completes);
   });
 }
