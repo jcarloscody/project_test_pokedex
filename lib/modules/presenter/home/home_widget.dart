@@ -21,7 +21,7 @@ class _HomeWidgetState extends State<HomeWidget> {
     final height = size.height;
     return Scaffold(
       body: Visibility(
-        visible: controller.statusPokemonsLoading,
+        visible: controller.statusPokemonsLoadingInitial,
         replacement: const SizedBox(
           height: double.maxFinite,
           width: double.maxFinite,
@@ -82,7 +82,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                             borderSide: BorderSide.none,
                           ),
                         ),
-                        onChanged: (value) {},
+                        onChanged: (value) {
+                          controller.getPokemonSearching(Id: value);
+                        },
+                        keyboardType: TextInputType.number,
                       ),
                     ),
                     Padding(
@@ -118,20 +121,34 @@ class _HomeWidgetState extends State<HomeWidget> {
                       color: const Color(0xffffffff)),
                   child: Consumer<HomeController>(
                     builder: (context, homeController, child) {
-                      return GridView.builder(
-                        padding: const EdgeInsets.fromLTRB(6, 20, 6, 10),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          mainAxisSpacing: 2.0,
-                          crossAxisSpacing: 3.0,
+                      return Visibility(
+                        visible: homeController.statusPokemonsLoadingSearch,
+                        replacement: const SizedBox(
+                          height: double.maxFinite,
+                          width: double.maxFinite,
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              backgroundColor: Colors.yellow,
+                              color: Colors.green,
+                              strokeWidth: 10,
+                            ),
+                          ),
                         ),
-                        itemCount: controller.listPokemons.length,
-                        itemBuilder: (context, index) {
-                          return BlockPokemonWidget(
-                            pokemonEntity: controller.listPokemons[index],
-                          );
-                        },
+                        child: GridView.builder(
+                          padding: const EdgeInsets.fromLTRB(6, 20, 6, 10),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            mainAxisSpacing: 2.0,
+                            crossAxisSpacing: 3.0,
+                          ),
+                          itemCount: controller.listPokemons.length,
+                          itemBuilder: (context, index) {
+                            return BlockPokemonWidget(
+                              pokemonEntity: controller.listPokemons[index],
+                            );
+                          },
+                        ),
                       );
                     },
                   ),
