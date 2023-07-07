@@ -1,33 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/modules/domain/entities/pokemon_specific_entity.dart';
 import 'package:pokedex/modules/domain/usescases/pokemon_search.dart';
 
-import '../../domain/entities/pokemon_entity.dart';
+import '../../domain/entities/pokemon_global_entity.dart';
 
 class HomeController extends ChangeNotifier {
   final PokemonSearch pokemonSearch;
-  bool _status = false;
-  List<PokemonEntity> _listPokemons = [];
+  bool _statusPokemonsLoading = false;
+  Map<String, bool> statusPokemonLoadin = {};
+  List<PokemonGlobalEntity> _listPokemons = [];
 
-  List<PokemonEntity> get listPokemons => _listPokemons;
-  bool get status => _status;
+  List<PokemonGlobalEntity> get listPokemons => _listPokemons;
+  bool get statusPokemonsLoading => _statusPokemonsLoading;
 
   HomeController({required this.pokemonSearch}) {
-    getStreamPokemon();
+    getPokemonAll();
   }
 
-  Future<void> getStreamPokemon() async {
-    _status = false;
+  Future<void> getPokemonAll() async {
+    _statusPokemonsLoading = false;
     notifyListeners();
 
-    _listPokemons = await pokemonSearch.search(text: "text");
+    _listPokemons = await pokemonSearch.searchAll();
     notifyListeners();
 
-    _status = true;
+    _statusPokemonsLoading = true;
     notifyListeners();
   }
 
-  void checkStatus({required bool status}) {
-    _status = status;
+  Future<PokemonSpecificEntity> getPokemon(
+      {required PokemonGlobalEntity pokemon}) async {
+    statusPokemonLoadin.update(
+      pokemon.name,
+      (value) => false,
+      ifAbsent: () => false,
+    );
     notifyListeners();
+
+    final pokemonResult = await pokemonSearch.search(text: pokemon.url);
+
+    statusPokemonLoadin.update(
+      pokemon.name,
+      (value) => true,
+    );
+    notifyListeners();
+    return pokemonResult;
   }
 }

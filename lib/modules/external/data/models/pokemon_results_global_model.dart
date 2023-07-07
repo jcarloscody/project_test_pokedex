@@ -1,11 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-class PokemonResultsModel {
+class PokemonResultsGlobalModel {
   final String name;
   final String url;
 
-  PokemonResultsModel({required this.name, required this.url});
+  PokemonResultsGlobalModel({required this.name, required this.url});
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -14,8 +14,8 @@ class PokemonResultsModel {
     };
   }
 
-  factory PokemonResultsModel.fromMap(map) {
-    return PokemonResultsModel(
+  factory PokemonResultsGlobalModel.fromMap(map) {
+    return PokemonResultsGlobalModel(
       name: map['name'] as String,
       url: map['url'] as String,
     );
@@ -23,6 +23,6 @@ class PokemonResultsModel {
 
   String toJson() => json.encode(toMap());
 
-  factory PokemonResultsModel.fromJson(dynamic source) =>
-      PokemonResultsModel.fromMap(source);
+  factory PokemonResultsGlobalModel.fromJson(dynamic source) =>
+      PokemonResultsGlobalModel.fromMap(source);
 }

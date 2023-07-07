@@ -1,4 +1,5 @@
-import 'package:pokedex/modules/domain/entities/pokemon_entity.dart';
+import 'package:pokedex/modules/domain/entities/pokemon_global_entity.dart';
+import 'package:pokedex/modules/domain/entities/pokemon_specific_entity.dart';
 
 import 'package:pokedex/modules/domain/repositories/ipokemon_repository.dart';
 
@@ -11,7 +12,12 @@ class PokemonSearch implements IPokemonSearch {
   PokemonSearch({required this.pokemonRepository});
 
   @override
-  Future<List<PokemonEntity>> search({required String text}) async {
+  Future<List<PokemonGlobalEntity>> searchAll() async {
+    return pokemonRepository.searchAll();
+  }
+
+  @override
+  Future<PokemonSpecificEntity> search({required String text}) {
     if (text.isEmpty) {
       throw ErrorSearchRepository("Texto Inválido");
     }

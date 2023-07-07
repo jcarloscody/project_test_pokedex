@@ -5,8 +5,6 @@ import 'package:pokedex/main_widget.dart';
 
 import 'app_modular.dart';
 
-//https://www.figma.com/file/oyy40kpPCamOuJOQu1uYMo/Pok%C3%A9dex-(Community)?type=design&node-id=1017-431&mode=design
-//https://pokeapi.co/api/v2/pokemon/?offset=0&limit=10271
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([

@@ -4,28 +4,25 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i11;
-import 'dart:ui' as _i13;
 
 import 'package:dio/src/adapter.dart' as _i3;
-import 'package:dio/src/cancel_token.dart' as _i15;
-import 'package:dio/src/dio.dart' as _i14;
+import 'package:dio/src/cancel_token.dart' as _i12;
+import 'package:dio/src/dio.dart' as _i10;
 import 'package:dio/src/dio_mixin.dart' as _i5;
 import 'package:dio/src/options.dart' as _i2;
 import 'package:dio/src/response.dart' as _i6;
 import 'package:dio/src/transformer.dart' as _i4;
-import 'package:flutter/material.dart' as _i12;
-import 'package:flutter_modular/src/presenter/models/modular_navigator.dart'
-    as _i9;
-import 'package:flutter_modular/src/presenter/models/route.dart' as _i10;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:pokedex/modules/domain/entities/pokemon_entity.dart' as _i19;
-import 'package:pokedex/modules/domain/repositories/ipokemon_repository.dart'
+import 'package:pokedex/modules/domain/entities/pokemon_global_entity.dart'
+    as _i14;
+import 'package:pokedex/modules/domain/entities/pokemon_specific_entity.dart'
     as _i8;
-import 'package:pokedex/modules/domain/usescases/pokemon_search.dart' as _i18;
+import 'package:pokedex/modules/domain/repositories/ipokemon_repository.dart'
+    as _i9;
+import 'package:pokedex/modules/domain/usescases/pokemon_search.dart' as _i15;
 import 'package:pokedex/modules/infra/data/http/ipokemon_data_http.dart' as _i7;
-import 'package:pokedex/modules/infra/models/pokemon_model.dart' as _i17;
 import 'package:pokedex/modules/infra/repositories/pokemon_repository.dart'
-    as _i16;
+    as _i13;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -100,9 +97,9 @@ class _FakeIPokemonDataHttp_5 extends _i1.SmartFake
         );
 }
 
-class _FakeIPokemonRepository_6 extends _i1.SmartFake
-    implements _i8.IPokemonRepository {
-  _FakeIPokemonRepository_6(
+class _FakePokemonSpecificEntity_6 extends _i1.SmartFake
+    implements _i8.PokemonSpecificEntity {
+  _FakePokemonSpecificEntity_6(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -111,196 +108,21 @@ class _FakeIPokemonRepository_6 extends _i1.SmartFake
         );
 }
 
-/// A class which mocks [IModularNavigator].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockIModularNavigator extends _i1.Mock implements _i9.IModularNavigator {
-  MockIModularNavigator() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  String get path => (super.noSuchMethod(
-        Invocation.getter(#path),
-        returnValue: '',
-      ) as String);
-  @override
-  List<_i10.ParallelRoute<dynamic>> get navigateHistory => (super.noSuchMethod(
-        Invocation.getter(#navigateHistory),
-        returnValue: <_i10.ParallelRoute<dynamic>>[],
-      ) as List<_i10.ParallelRoute<dynamic>>);
-  @override
-  _i11.Future<T?> push<T extends Object?>(_i12.Route<T>? route) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #push,
-          [route],
-        ),
-        returnValue: _i11.Future<T?>.value(),
-      ) as _i11.Future<T?>);
-  @override
-  _i11.Future<T?> popAndPushNamed<T extends Object?, TO extends Object?>(
-    String? routeName, {
-    TO? result,
-    Object? arguments,
-    bool? forRoot = false,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #popAndPushNamed,
-          [routeName],
-          {
-            #result: result,
-            #arguments: arguments,
-            #forRoot: forRoot,
-          },
-        ),
-        returnValue: _i11.Future<T?>.value(),
-      ) as _i11.Future<T?>);
-  @override
-  _i11.Future<T?> pushNamed<T extends Object?>(
-    String? routeName, {
-    Object? arguments,
-    bool? forRoot = false,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #pushNamed,
-          [routeName],
-          {
-            #arguments: arguments,
-            #forRoot: forRoot,
-          },
-        ),
-        returnValue: _i11.Future<T?>.value(),
-      ) as _i11.Future<T?>);
-  @override
-  _i11.Future<T?> pushNamedAndRemoveUntil<T extends Object?>(
-    String? newRouteName,
-    bool Function(_i12.Route<dynamic>)? predicate, {
-    Object? arguments,
-    bool? forRoot = false,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #pushNamedAndRemoveUntil,
-          [
-            newRouteName,
-            predicate,
-          ],
-          {
-            #arguments: arguments,
-            #forRoot: forRoot,
-          },
-        ),
-        returnValue: _i11.Future<T?>.value(),
-      ) as _i11.Future<T?>);
-  @override
-  _i11.Future<T?> pushReplacementNamed<T extends Object?, TO extends Object?>(
-    String? routeName, {
-    TO? result,
-    Object? arguments,
-    bool? forRoot = false,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #pushReplacementNamed,
-          [routeName],
-          {
-            #result: result,
-            #arguments: arguments,
-            #forRoot: forRoot,
-          },
-        ),
-        returnValue: _i11.Future<T?>.value(),
-      ) as _i11.Future<T?>);
-  @override
-  void pop<T extends Object?>([T? result]) => super.noSuchMethod(
-        Invocation.method(
-          #pop,
-          [result],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  bool canPop() => (super.noSuchMethod(
-        Invocation.method(
-          #canPop,
-          [],
-        ),
-        returnValue: false,
-      ) as bool);
-  @override
-  _i11.Future<bool> maybePop<T extends Object?>([T? result]) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #maybePop,
-          [result],
-        ),
-        returnValue: _i11.Future<bool>.value(false),
-      ) as _i11.Future<bool>);
-  @override
-  void popUntil(bool Function(_i12.Route<dynamic>)? predicate) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #popUntil,
-          [predicate],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  void navigate(
-    String? path, {
-    dynamic arguments,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #navigate,
-          [path],
-          {#arguments: arguments},
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  void setObservers(List<_i12.NavigatorObserver>? navigatorObservers) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #setObservers,
-          [navigatorObservers],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  void setNavigatorKey(_i12.GlobalKey<_i12.NavigatorState>? navigatorkey) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #setNavigatorKey,
-          [navigatorkey],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  void addListener(_i13.VoidCallback? listener) => super.noSuchMethod(
-        Invocation.method(
-          #addListener,
-          [listener],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  void removeListener(_i13.VoidCallback? listener) => super.noSuchMethod(
-        Invocation.method(
-          #removeListener,
-          [listener],
-        ),
-        returnValueForMissingStub: null,
-      );
+class _FakeIPokemonRepository_7 extends _i1.SmartFake
+    implements _i9.IPokemonRepository {
+  _FakeIPokemonRepository_7(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 /// A class which mocks [Dio].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDio extends _i1.Mock implements _i14.Dio {
+class MockDio extends _i1.Mock implements _i10.Dio {
   MockDio() {
     _i1.throwOnMissingStub(this);
   }
@@ -377,7 +199,7 @@ class MockDio extends _i1.Mock implements _i14.Dio {
     Object? data,
     Map<String, dynamic>? queryParameters,
     _i2.Options? options,
-    _i15.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     _i2.ProgressCallback? onReceiveProgress,
   }) =>
       (super.noSuchMethod(
@@ -412,7 +234,7 @@ class MockDio extends _i1.Mock implements _i14.Dio {
     Uri? uri, {
     Object? data,
     _i2.Options? options,
-    _i15.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     _i2.ProgressCallback? onReceiveProgress,
   }) =>
       (super.noSuchMethod(
@@ -446,7 +268,7 @@ class MockDio extends _i1.Mock implements _i14.Dio {
     Object? data,
     Map<String, dynamic>? queryParameters,
     _i2.Options? options,
-    _i15.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     _i2.ProgressCallback? onSendProgress,
     _i2.ProgressCallback? onReceiveProgress,
   }) =>
@@ -484,7 +306,7 @@ class MockDio extends _i1.Mock implements _i14.Dio {
     Uri? uri, {
     Object? data,
     _i2.Options? options,
-    _i15.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     _i2.ProgressCallback? onSendProgress,
     _i2.ProgressCallback? onReceiveProgress,
   }) =>
@@ -521,7 +343,7 @@ class MockDio extends _i1.Mock implements _i14.Dio {
     Object? data,
     Map<String, dynamic>? queryParameters,
     _i2.Options? options,
-    _i15.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     _i2.ProgressCallback? onSendProgress,
     _i2.ProgressCallback? onReceiveProgress,
   }) =>
@@ -559,7 +381,7 @@ class MockDio extends _i1.Mock implements _i14.Dio {
     Uri? uri, {
     Object? data,
     _i2.Options? options,
-    _i15.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     _i2.ProgressCallback? onSendProgress,
     _i2.ProgressCallback? onReceiveProgress,
   }) =>
@@ -596,7 +418,7 @@ class MockDio extends _i1.Mock implements _i14.Dio {
     Object? data,
     Map<String, dynamic>? queryParameters,
     _i2.Options? options,
-    _i15.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -628,7 +450,7 @@ class MockDio extends _i1.Mock implements _i14.Dio {
     Uri? uri, {
     Object? data,
     _i2.Options? options,
-    _i15.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -659,7 +481,7 @@ class MockDio extends _i1.Mock implements _i14.Dio {
     Object? data,
     Map<String, dynamic>? queryParameters,
     _i2.Options? options,
-    _i15.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -691,7 +513,7 @@ class MockDio extends _i1.Mock implements _i14.Dio {
     Uri? uri, {
     Object? data,
     _i2.Options? options,
-    _i15.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -722,7 +544,7 @@ class MockDio extends _i1.Mock implements _i14.Dio {
     Object? data,
     Map<String, dynamic>? queryParameters,
     _i2.Options? options,
-    _i15.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     _i2.ProgressCallback? onSendProgress,
     _i2.ProgressCallback? onReceiveProgress,
   }) =>
@@ -760,7 +582,7 @@ class MockDio extends _i1.Mock implements _i14.Dio {
     Uri? uri, {
     Object? data,
     _i2.Options? options,
-    _i15.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     _i2.ProgressCallback? onSendProgress,
     _i2.ProgressCallback? onReceiveProgress,
   }) =>
@@ -797,7 +619,7 @@ class MockDio extends _i1.Mock implements _i14.Dio {
     dynamic savePath, {
     _i2.ProgressCallback? onReceiveProgress,
     Map<String, dynamic>? queryParameters,
-    _i15.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     bool? deleteOnError = true,
     String? lengthHeader = r'content-length',
     Object? data,
@@ -846,7 +668,7 @@ class MockDio extends _i1.Mock implements _i14.Dio {
     Uri? uri,
     dynamic savePath, {
     _i2.ProgressCallback? onReceiveProgress,
-    _i15.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     bool? deleteOnError = true,
     String? lengthHeader = r'content-length',
     Object? data,
@@ -893,7 +715,7 @@ class MockDio extends _i1.Mock implements _i14.Dio {
     String? path, {
     Object? data,
     Map<String, dynamic>? queryParameters,
-    _i15.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     _i2.Options? options,
     _i2.ProgressCallback? onSendProgress,
     _i2.ProgressCallback? onReceiveProgress,
@@ -931,7 +753,7 @@ class MockDio extends _i1.Mock implements _i14.Dio {
   _i11.Future<_i6.Response<T>> requestUri<T>(
     Uri? uri, {
     Object? data,
-    _i15.CancelToken? cancelToken,
+    _i12.CancelToken? cancelToken,
     _i2.Options? options,
     _i2.ProgressCallback? onSendProgress,
     _i2.ProgressCallback? onReceiveProgress,
@@ -983,7 +805,7 @@ class MockDio extends _i1.Mock implements _i14.Dio {
 /// A class which mocks [PokemonRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPokemonRepository extends _i1.Mock implements _i16.PokemonRepository {
+class MockPokemonRepository extends _i1.Mock implements _i13.PokemonRepository {
   MockPokemonRepository() {
     _i1.throwOnMissingStub(this);
   }
@@ -997,43 +819,77 @@ class MockPokemonRepository extends _i1.Mock implements _i16.PokemonRepository {
         ),
       ) as _i7.IPokemonDataHttp);
   @override
-  _i11.Future<List<_i17.PokemonModel>> search({required String? text}) =>
+  _i11.Future<List<_i14.PokemonGlobalEntity>> searchAll() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #searchAll,
+          [],
+        ),
+        returnValue: _i11.Future<List<_i14.PokemonGlobalEntity>>.value(
+            <_i14.PokemonGlobalEntity>[]),
+      ) as _i11.Future<List<_i14.PokemonGlobalEntity>>);
+  @override
+  _i11.Future<_i8.PokemonSpecificEntity> search({required String? text}) =>
       (super.noSuchMethod(
         Invocation.method(
           #search,
           [],
           {#text: text},
         ),
-        returnValue:
-            _i11.Future<List<_i17.PokemonModel>>.value(<_i17.PokemonModel>[]),
-      ) as _i11.Future<List<_i17.PokemonModel>>);
+        returnValue: _i11.Future<_i8.PokemonSpecificEntity>.value(
+            _FakePokemonSpecificEntity_6(
+          this,
+          Invocation.method(
+            #search,
+            [],
+            {#text: text},
+          ),
+        )),
+      ) as _i11.Future<_i8.PokemonSpecificEntity>);
 }
 
 /// A class which mocks [PokemonSearch].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPokemonSearch extends _i1.Mock implements _i18.PokemonSearch {
+class MockPokemonSearch extends _i1.Mock implements _i15.PokemonSearch {
   MockPokemonSearch() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i8.IPokemonRepository get pokemonRepository => (super.noSuchMethod(
+  _i9.IPokemonRepository get pokemonRepository => (super.noSuchMethod(
         Invocation.getter(#pokemonRepository),
-        returnValue: _FakeIPokemonRepository_6(
+        returnValue: _FakeIPokemonRepository_7(
           this,
           Invocation.getter(#pokemonRepository),
         ),
-      ) as _i8.IPokemonRepository);
+      ) as _i9.IPokemonRepository);
   @override
-  _i11.Future<List<_i19.PokemonEntity>> search({required String? text}) =>
+  _i11.Future<List<_i14.PokemonGlobalEntity>> searchAll() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #searchAll,
+          [],
+        ),
+        returnValue: _i11.Future<List<_i14.PokemonGlobalEntity>>.value(
+            <_i14.PokemonGlobalEntity>[]),
+      ) as _i11.Future<List<_i14.PokemonGlobalEntity>>);
+  @override
+  _i11.Future<_i8.PokemonSpecificEntity> search({required String? text}) =>
       (super.noSuchMethod(
         Invocation.method(
           #search,
           [],
           {#text: text},
         ),
-        returnValue:
-            _i11.Future<List<_i19.PokemonEntity>>.value(<_i19.PokemonEntity>[]),
-      ) as _i11.Future<List<_i19.PokemonEntity>>);
+        returnValue: _i11.Future<_i8.PokemonSpecificEntity>.value(
+            _FakePokemonSpecificEntity_6(
+          this,
+          Invocation.method(
+            #search,
+            [],
+            {#text: text},
+          ),
+        )),
+      ) as _i11.Future<_i8.PokemonSpecificEntity>);
 }
